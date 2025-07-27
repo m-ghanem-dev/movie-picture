@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend
+  namespace: default   # <-- must match the Fargate profile selector namespace
   labels:
     app: backend
 spec:

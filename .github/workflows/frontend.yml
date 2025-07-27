@@ -57,6 +57,6 @@ jobs:
           IMAGE_TAG: latest
           REPO_NAME: frontend
         run: |
-          docker build --build-arg=REACT_APP_MOVIE_API_URL=http://localhost:5000 --tag 576165291816.dkr.ecr.eu-central-1.amazonaws.com/frontend:latest ./frontend
+          docker build --build-arg=REACT_APP_MOVIE_API_URL=http://localhost:5000 --tag 576165291816.dkr.ecr.eu-central-1.amazonaws.com/frontend:latest .
           docker push 576165291816.dkr.ecr.eu-central-1.amazonaws.com/frontend:latest
       

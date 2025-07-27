@@ -99,6 +99,8 @@ jobs:
         IMAGE_TAG: latest
         CLUSTER_NAME: movie-picture-eks-cluster
       steps:
+      - uses: actions/checkout@v4
+    
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:

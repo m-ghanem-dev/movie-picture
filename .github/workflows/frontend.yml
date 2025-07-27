@@ -52,7 +52,7 @@ jobs:
       - uses: actions/checkout@v4
   
       - name: Build and Push Docker Image
-        working-directory: starter/frontend
+        working-directory: frontend
         env:
           IMAGE_TAG: latest
           REPO_NAME: frontend

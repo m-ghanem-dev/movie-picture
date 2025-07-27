@@ -97,9 +97,10 @@ jobs:
         REPO_URL: 576165291816.dkr.ecr.eu-central-1.amazonaws.com
         IMAGE_NAME: frontend
         IMAGE_TAG: latest
+        CLUSTER_NAME: movie-picture-eks-cluster
       steps:
         - name: Configure Kubeconfig
-          run: aws eks update-kubeconfig --name udacity-project4 --region us-east-1
+          run: aws eks update-kubeconfig --name ${CLUSTER_NAME} --region eu-central-1
 
         - name: Deploy Docker Image to Amazon EKS
           working-directory: frontend/k8s

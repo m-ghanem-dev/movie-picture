@@ -50,6 +50,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Build Docker Image
-        run: docker build -t ${GITHUB_SHA} ./frontend
+  
+      - name: Build and Push Docker Image
+        working-directory: starter/frontend
+        env:
+          IMAGE_TAG: latest
+          REPO_NAME: frontend
+        run: |
+          docker build --build-arg=REACT_APP_MOVIE_API_URL=http://localhost:5000 --tag 576165291816.dkr.ecr.eu-central-1.amazonaws.com/frontend:latest ./frontend
+          docker push 576165291816.dkr.ecr.eu-central-1.amazonaws.com/frontend:latest
+      

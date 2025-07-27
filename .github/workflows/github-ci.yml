@@ -8,4 +8,4 @@ on:
 
 jobs:
   frontend:
-    uses: ./.github/workflows/frontend-ci.yml
+    uses: ./.github/workflows/frontend.yml

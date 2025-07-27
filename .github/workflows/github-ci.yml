@@ -1,4 +1,4 @@
-name: Frontend CI
+name: Master CI Runner
 
 on:
   push:
@@ -8,4 +8,4 @@ on:
 
 jobs:
   frontend:
-    uses: ./frontend.yml
+    uses: ./.github/workflows/frontend.yml

@@ -84,9 +84,30 @@ jobs:
           docker build --build-arg=REACT_APP_MOVIE_API_URL=http://localhost:5000 --tag ${REPO_URL}/${IMAGE_NAME}:${IMAGE_TAG} .
         
       - name: Deploy Image
-        working-directory: frontend
         env:
           IMAGE_TAG: latest
           REPO_NAME: frontend
         run: |
             docker push ${REPO_URL}/${IMAGE_NAME}:${IMAGE_TAG}
+  deploy:
+      name: Deploy to EKS
+      needs: build
+      runs-on: ubuntu-latest
+      env:
+        REPO_URL: 576165291816.dkr.ecr.eu-central-1.amazonaws.com
+        IMAGE_NAME: frontend
+        IMAGE_TAG: latest
+      steps:
+        - name: Configure Kubeconfig
+          run: aws eks update-kubeconfig --name udacity-project4 --region us-east-1
+
+        - name: Deploy Docker Image to Amazon EKS
+          working-directory: frontend/k8s
+          env:
+            IMAGE_TAG: latest
+            REPO_NAME: frontend
+            REPO_URL: 576165291816.dkr.ecr.eu-central-1.amazonaws.com
+            IMAGE_NAME: frontend
+          run: |
+            kustomize edit set image frontend=${REPO_URL}/${IMAGE_NAME}:${IMAGE_TAG}
+            kustomize build | kubectl apply -f -

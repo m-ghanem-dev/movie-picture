@@ -11,6 +11,6 @@ spec:
     app: backend
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 5000
-      nodePort: 30007
+      nodePort: 30007 # Port on the node to expose to load balancer
+      port: 80 # NodePort forwards to Service port 80. The Service listens on port 80 (for clients inside the cluster brought by load balancer).
+      targetPort: 5000 # Port the pod container listens on. Service forwards traffic to port 3000.

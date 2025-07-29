@@ -55,7 +55,7 @@ jobs:
     env:
       REPO_URL: 576165291816.dkr.ecr.eu-central-1.amazonaws.com
       IMAGE_NAME: frontend
-      IMAGE_TAG: latest
+      IMAGE_TAG: ${{ github.sha }}
     
     runs-on: ubuntu-latest
     steps:
@@ -78,14 +78,14 @@ jobs:
       - name: Build Image
         working-directory: frontend
         env:
-          IMAGE_TAG: latest
+          IMAGE_TAG: ${{ github.sha }}
           REPO_NAME: frontend
         run: |
           docker build --build-arg=REACT_APP_MOVIE_API_URL=http://a2998f4f5606742598186267f770be5a-499468244.eu-central-1.elb.amazonaws.com --tag ${REPO_URL}/${IMAGE_NAME}:${IMAGE_TAG} .
         
       - name: Deploy Image
         env:
-          IMAGE_TAG: latest
+          IMAGE_TAG: ${{ github.sha }}
           REPO_NAME: frontend
         run: |
             docker push ${REPO_URL}/${IMAGE_NAME}:${IMAGE_TAG}

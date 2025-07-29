@@ -6,7 +6,8 @@ metadata:
   labels:
     app: backend
 spec:
-  type: LoadBalancer
+  type: LoadBalancer  # Service type LoadBalancer creates an external load balancer (in supported environments/clouds).
+                      # If not explicitly defined in Terraform, Kubernetes will provision the LoadBalancer automatically.
   selector:
     app: backend
   ports:

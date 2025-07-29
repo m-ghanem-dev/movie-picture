@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
-  namespace: default   # <-- must match the Fargate profile selector namespace
   labels:
     app: frontend
 spec:
@@ -17,6 +16,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: frontend
+          image: frontend:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 3000

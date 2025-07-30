@@ -81,7 +81,7 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
           REPO_NAME: frontend
         run: |
-          docker build --build-arg=REACT_APP_MOVIE_API_URL=http://a86e8d47262d44b31a923fb08c33f49a-970102168.eu-central-1.elb.amazonaws.com --tag ${REPO_URL}/${IMAGE_NAME}:${IMAGE_TAG} .
+          docker build --build-arg=REACT_APP_MOVIE_API_URL=http://ac84fc9bf9fbe46c0a9eab447d7c2f81-1547558882.eu-central-1.elb.amazonaws.com --tag ${REPO_URL}/${IMAGE_NAME}:${IMAGE_TAG} .
         
       - name: Deploy Image
         env:
